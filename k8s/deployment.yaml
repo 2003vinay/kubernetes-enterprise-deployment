@@ -1,20 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: nginx-deployment
+ name: enterprise-app-deployment
  namespace: enterprise-app
 spec:
  replicas: 3
  selector:
   matchLabels:
-   app: nginx
+   app: enterprise-app
  template:
   metadata:
    labels:
-    app: nginx
+    app: enterprise-app
   spec:
     containers:
-    - name: nginx
-      image: nginx:1.27
+    - name: enterprise-app
+      image: enterprise-app:v1
       ports:
-       - containerPort: 80
+       - containerPort: 5000
+      envFrom:
+       - configMapRef:
+           name: enterprise-app-config
+       - secretRef:
+           name: enterprise-app-secret
+      resources:
+        requests:
+          cpu: "100m"
+          memory: "128Mi"
+        limits:
+          cpu: "500m"
+          memory: "256Mi"
