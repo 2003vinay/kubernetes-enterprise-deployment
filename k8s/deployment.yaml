@@ -15,7 +15,7 @@ spec:
   spec:
     containers:
     - name: enterprise-app
-      image: enterprise-app:v1
+      image: ghcr.io/2003vinay/kubernetes-enterprise-deployment:latest
       ports:
        - containerPort: 5000
       envFrom:

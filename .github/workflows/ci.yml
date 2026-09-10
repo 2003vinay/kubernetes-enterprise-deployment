@@ -46,7 +46,12 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Docker image
-        run: docker build -t ghcr.io/2003vinay/kubernetes-enterprise-deployment:${{ github.sha }} .
+        run: |
+          docker build \
+            -t ghcr.io/2003vinay/kubernetes-enterprise-deployment:${{ github.sha }} \
+            -t ghcr.io/2003vinay/kubernetes-enterprise-deployment:latest .
 
       - name: Push Docker image
-        run: docker push ghcr.io/2003vinay/kubernetes-enterprise-deployment:${{ github.sha }}
+        run: |
+          docker push ghcr.io/2003vinay/kubernetes-enterprise-deployment:${{ github.sha }}
+          docker push ghcr.io/2003vinay/kubernetes-enterprise-deployment:latest
