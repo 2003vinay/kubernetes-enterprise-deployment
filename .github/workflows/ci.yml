@@ -30,10 +30,23 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     needs: test
+    permissions:
+      contents: read
+      packages: write
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build Docker image
-        run: docker build -t enterprise-app:${{ github.sha }} .
+        run: docker build -t ghcr.io/2003vinay/kubernetes-enterprise-deployment:${{ github.sha }} .
+
+      - name: Push Docker image
+        run: docker push ghcr.io/2003vinay/kubernetes-enterprise-deployment:${{ github.sha }}
