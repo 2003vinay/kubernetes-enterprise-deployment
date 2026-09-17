@@ -67,7 +67,17 @@ jobs:
       - name: Verify Kubernetes connection
         run: kubectl get nodes
 
-      - name: Deploy new image
+      - name: Apply Kubernetes manifests
+        run: |
+          kubectl apply -f k8s/namespace.yaml
+          kubectl apply -f k8s/configmap.yaml
+          kubectl apply -f k8s/secret.yaml
+          kubectl apply -f k8s/deployment.yaml
+          kubectl apply -f k8s/service.yaml
+          kubectl apply -f k8s/ingress.yaml
+          kubectl apply -f k8s/hpa.yaml
+
+      - name: Deploy commit image
         run: kubectl set image deployment/enterprise-app-deployment enterprise-app=ghcr.io/2003vinay/kubernetes-enterprise-deployment:${{ github.sha }} -n enterprise-app
 
       - name: Wait for rollout

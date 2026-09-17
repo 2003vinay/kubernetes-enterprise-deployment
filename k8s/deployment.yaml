@@ -15,7 +15,7 @@ spec:
   spec:
     containers:
     - name: enterprise-app
-      image: ghcr.io/2003vinay/kubernetes-enterprise-deployment:latest
+      image: ghcr.io/2003vinay/kubernetes-enterprise-deployment:3759ed2c4bf8c61d231c7914735da75e03893353
 
       ports:
        - containerPort: 5000
@@ -26,7 +26,7 @@ spec:
           port: 5000
         initialDelaySeconds: 5
         periodSeconds: 10
-        
+
       livenessProbe:
         httpGet:
           path: /health
