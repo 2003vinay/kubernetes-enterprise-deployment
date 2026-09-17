@@ -17,7 +17,7 @@ APP_VERSION = os.getenv("APP_VERSION", "1.1.0")
 @app.route("/")
 def home():
     logger.info("Home endpoint accessed")
-    return "Welcome to Enterprise CI/CD Pipeline!"
+    return "Enterprise Kubernetes Application - CI/CD Deployment Successful!"
 
 
 @app.route("/health")
