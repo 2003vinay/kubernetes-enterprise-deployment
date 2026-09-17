@@ -4,6 +4,10 @@ An end-to-end DevOps project demonstrating automated CI/CD of a containerized Fl
 
 ## Architecture
 
+![Architecture Diagram](docs/architecture.png)
+
+## Architecture
+
 The pipeline follows this flow:
 
 Developer → GitHub → GitHub Actions CI → Docker Build → GHCR → Self-Hosted Runner → Kubernetes → NGINX Ingress → Application
