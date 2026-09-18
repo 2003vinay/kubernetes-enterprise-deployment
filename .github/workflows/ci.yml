@@ -81,7 +81,7 @@ jobs:
         run: kubectl set image deployment/enterprise-app-deployment enterprise-app=ghcr.io/2003vinay/kubernetes-enterprise-deployment:${{ github.sha }} -n enterprise-app
 
       - name: Wait for rollout
-        run: kubectl rollout status deployment/enterprise-app-deployment -n enterprise-app --timeout=120s
+        run: kubectl rollout status deployment/enterprise-app-deployment -n enterprise-app --timeout=300s
 
       - name: Verify deployment
         run: kubectl get pods -n enterprise-app
